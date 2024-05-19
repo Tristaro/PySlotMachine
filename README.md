@@ -1,2 +1,2 @@
 # PySlotMachine
-Simple Slot Machine
+Simple Slot Machine https://tristaro.github.io/PySlotMachine/
