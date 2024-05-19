@@ -1,0 +1,91 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5em;
+  color: gold;
+}
+
+.balance,
+.loan {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.reels {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.reel {
+  background-color: #ffffff;
+  border: 2px solid #888888;
+  margin: 0 10px;
+  padding: 20px;
+  font-size: 3em;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px #000000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button {
+  background-color: gold;
+  color: #000000;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #ffd700;
+}
+
+.message {
+  font-size: 1.2em;
+  margin: 20px 0;
+  color: #ffd700;
+}
+
+.loan-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.loan-buttons button {
+  background-color: #888888;
+  color: #ffffff;
+  font-size: 1em;
+  padding: 10px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.loan-buttons button:hover {
+  background-color: #666666;
+}

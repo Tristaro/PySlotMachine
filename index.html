@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slot Machine</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Slot Machine</h1>
+      <div class="balance">Balance: $<span id="balance">100</span></div>
+      <div class="loan">Loan: $<span id="loan">0</span></div>
+      <div class="reels">
+        <div class="reel" id="reel1">🍒</div>
+        <div class="reel" id="reel2">🍋</div>
+        <div class="reel" id="reel3">🍊</div>
+      </div>
+      <button class="button" id="spinButton">Spin</button>
+      <div class="message" id="message"></div>
+      <div class="loan-buttons" id="loanButtons" style="display: none">
+        <button onclick="takeLoan(100)">Loan $100</button>
+        <button onclick="takeLoan(250)">Loan $250</button>
+        <button onclick="takeLoan(500)">Loan $500</button>
+        <button onclick="takeLoan(750)">Loan $750</button>
+        <button onclick="takeLoan(1000)">Loan $1000</button>
+      </div>
+    </div>
+
+    <script>
+      const symbols = ["🍒", "🍋", "🍊", "🍇", "🔔", "⭐"];
+      let balance = 100;
+      let loan = 0;
+      const costPerSpin = 10;
+      const winReward = 50;
+
+      document.getElementById("spinButton").addEventListener("click", spin);
+
+      function spin() {
+        if (balance < costPerSpin) {
+          showLoanOptions();
+          return;
+        }
+
+        updateBalance(-costPerSpin);
+
+        const result1 = symbols[Math.floor(Math.random() * symbols.length)];
+        const result2 = symbols[Math.floor(Math.random() * symbols.length)];
+        const result3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+        document.getElementById("reel1").textContent = result1;
+        document.getElementById("reel2").textContent = result2;
+        document.getElementById("reel3").textContent = result3;
+
+        if (result1 === result2 && result2 === result3) {
+          document.getElementById("message").textContent =
+            "Congratulations, you win!";
+          payLoanOrAddBalance(winReward);
+        } else {
+          document.getElementById("message").textContent =
+            "Better luck next time!";
+        }
+
+        if (balance < 0) {
+          showLoanOptions();
+        }
+      }
+
+      function updateBalance(amount) {
+        balance += amount;
+        document.getElementById("balance").textContent = balance;
+      }
+
+      function updateLoan(amount) {
+        loan += amount;
+        document.getElementById("loan").textContent = loan;
+      }
+
+      function showLoanOptions() {
+        document.getElementById("message").textContent =
+          "Balance below zero. Consider taking a loan.";
+        document.getElementById("loanButtons").style.display = "flex";
+      }
+
+      function takeLoan(amount) {
+        updateBalance(amount);
+        updateLoan(amount);
+        document.getElementById(
+          "message"
+        ).textContent = `Loan of $${amount} taken.`;
+        document.getElementById("loanButtons").style.display = "none";
+      }
+
+      function payLoanOrAddBalance(amount) {
+        if (loan > 0) {
+          if (amount >= loan) {
+            amount -= loan;
+            updateLoan(-loan);
+            updateBalance(amount);
+          } else {
+            updateLoan(-amount);
+          }
+        } else {
+          updateBalance(amount);
+        }
+      }
+    </script>
+  </body>
+</html>
